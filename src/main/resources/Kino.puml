@@ -1,27 +1,81 @@
 @startuml
 'https://plantuml.com/class-diagram
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
-
-List <|-- AbstractList
-Collection <|-- AbstractCollection
-
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
-
-class ArrayList {
-Object[] elementData
-size()
+class Cinema {
+    name: String
 }
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
+class Address {
+    street: String
+    houseNumber: int
+    houseNumberSuffix: String
+    postalCode: int
+    city: String
+    country: String
 }
+
+class CinemaHall{
+    isComplete(): boolean
+
+}
+
+interface RowOfSeats {
+    price: double
+    row: char
+}
+
+class Parquet {
+}
+class Lodge {
+}
+class LodgeWithService {
+}
+
+class Seat {
+    number: int
+}
+
+enum SeatStatus {
+    FREE
+    RESERVED
+    BOOKED
+}
+
+class FilmScreening {
+    date: Date
+}
+
+class Film {
+    name: String
+    length: double
+    cover: TODO
+    rating: TODO
+    description: String
+    actor: TODO
+}
+
+class Customer {
+    phoneNumber: String
+    email: String
+    paymentDetails: TODO
+}
+
+class Ticket {
+
+}
+
+Cinema "1" <-- Address
+Cinema "1" <-- "1..*" CinemaHall
+CinemaHall "1" <-- "1..*" RowOfSeats
+RowOfSeats "1" <-- "1..*" Seat
+Parquet ..|> RowOfSeats
+Lodge ..|> RowOfSeats
+LodgeWithService ..|> RowOfSeats
+CinemaHall "1" <-- "1" FilmScreening
+FilmScreening "0..*" <-- "1" Film
+Customer "1" <-- Address
+Seat <-- SeatStatus
+Customer "1" <-- "0..*" Ticket
+Seat <-- Ticket
 
 @enduml
