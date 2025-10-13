@@ -1,0 +1,89 @@
+@startuml
+'https://plantuml.com/class-diagramm
+
+class Kinosaal{
+name: String
+Sitzplätze: Int
+Sitzreihen: Array<Sitzplätze>
+Sitzplatzkategorie: Sitzplatzkategorie
+Film: Film
+}
+
+class Sitzplatz{
+Reihe: String
+Sitznummer: Int
+Kategorie: Sitzplatzkategorie
+}
+
+class Sitzplatzkategorie{
+Parkett: String
+Loge: String
+Loge mit Service: String
+Preis: Int
+}
+
+class Kunde{
+Vorname: String
+Nachname: String
+EMail: String
+Anschrift: String
+Telefon: String
+Buchung: Kundenreservierung
+}
+
+class Film{
+Titel: String
+Kinosaal: Kinossal
+Dauer: Double
+}
+
+class Einnahmen{
+Sitzplatzkategorie: Sitzplatzkategorie
+Preis: Int
+Film: Film
+Filmprogramm: Filmprogramm
+Buchung: Buchung
+}
+
+enum Reservierungstatus{
+Reserviert: String
+Gebucht: String
+Stoniert: String
+Frei: String
+}
+
+class Kundenreservierung{
+Reservierungstatus: Reservierungstatus
+Kinosaal: Kinosaal
+Uhrzeit: time
+Tag: date
+Filmprogramm: Filmprogramm
+Sitzplatz: Sitzplatz
+Preis: Int
+}
+
+class Filmprogramm{
+Film: Film
+Uhrzeit: time
+Tag: date
+Kinosaal: Kinosaal
+}
+
+class Buchung{
+Kundenreservierung: Kundenreservierung
+Reservierungstatus: Reservierungstatus
+Kinosaal: Kinosaal
+Film: Film
+}
+
+Buchung --> Einnahmen
+Buchung --> Kunde
+Kundenreservierung --> Buchung
+
+Sitzplatzkategorie --> Sitzplatz
+Sitzplatz --> Kinosaal
+Kinosaal --> Buchung
+Reservierungstatus --> Kundenreservierung
+Film --> Filmprogramm
+Filmprogramm --> Kinosaal
+@enduml
