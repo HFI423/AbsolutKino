@@ -60,6 +60,10 @@ class Customer {
     paymentDetails: TODO
 }
 
+class OwnerAccount {
+
+}
+
 class Ticket {
 
 }
