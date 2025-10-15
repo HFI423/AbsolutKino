@@ -3,13 +3,12 @@
 # ToDo:
 
 - choose a code-generation tool
-- understand database difference
-- understand usecase of message broker
+1. create use cases (model them)
+2. expand class diagram
 
 # Questions for future lecture:
 
-- why are two databases needed? What are they used for?
-- in what way do we need to use a message broker?
+- 
 
 # Resources:
 
