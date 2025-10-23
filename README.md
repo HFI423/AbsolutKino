@@ -6,9 +6,15 @@
 1. create use cases (model them)
 2. expand class diagram
 
-# Questions for future lecture:
+# Special Requirements
+- Containerization
+- HTTPS/ Authorization
+  ## optional
+  - GraphQl
+  - Graph database
 
-- 
+# Questions for future lecture:
+- graphql instead of message queue
 
 # Resources:
 
