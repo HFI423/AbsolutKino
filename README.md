@@ -15,6 +15,7 @@
 
 # Questions for future lecture:
 - graphql instead of message queue
+- graphDatabase/PostgreSQL
 
 # Resources:
 
