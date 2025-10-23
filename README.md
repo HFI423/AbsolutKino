@@ -16,6 +16,7 @@
 # Questions for future lecture:
 - graphql instead of message queue
 - graphDatabase/PostgreSQL
+- what diagrams to include: only diagrams for code generation?
 
 # Resources:
 
