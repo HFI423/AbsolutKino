@@ -1,0 +1,161 @@
+@startuml
+class Cinema {
+}
+
+class Movielist {
+addMovie()
+}
+
+class Cinemahall{
+name: String
+TotalSeats: int
+availableSeats()
+
+}
+
+class Movie {
+titel: String
+genre: String
+description: String
+regisseur: String
+length: int
+poster: graphic
+}
+
+enum Moviestatus {
+ANNOUNCED
+CURRENT
+ARCHIVED
+}
+
+enum Type {
+2D
+3D
+}
+enum FSKRating {
+FSK0
+FSK6
+FSK12
+FSK16
+FSK18
+}
+
+class adminAccount {
+password: String
+}
+
+class Schedule {}
+
+class Screening {
+date: date
+addScreening()
+}
+
+class Timeslot {
+begin: time
+end: time
+}
+
+class Seat {
+row: char
+seat_nr: int
+}
+
+enum Seatstatus {
+AVAILABLE
+RESERVED
+BOOKED
+}
+
+class Theaterlayout {
+diagramm: graphic?
+rows: char
+columns: int
+choseSeat()
+checkValidSeat()
+}
+
+class Ticket {
+price: int
+}
+
+enum Seatcategory {
+LOGE_MIT_BEDIENUNG
+LOGE
+PARKETT
+}
+
+class OnlineBooking {
+checkAge()
+checkDsicount()
+}
+/'checkAge() Hilfsfunktion, die Message erzeugt a la:
+"Sie müssen beim Ticket abholen ihre Ausweise vorzeigen usw.
+'/
+
+enum BookingType {
+TICKETS_RESERVED
+TICKETS_PAID
+}
+
+class Booking <<abstract>> {
+bookingID: int
+}
+
+class WalkInBooking{
+}
+
+
+class Customer <<abstract>> {
+}
+
+class User <<abstract>> {
+firstName: String
+lastName: String
+email: String
+}
+
+class Registered_User{
+password: string
+}
+
+Cinema -->"1.." Cinemahall
+Cinema "1"<--> "1" Schedule
+Cinemahall -->"1" Theaterlayout
+Cinemahall"1"<-->"1.." Seat
+Schedule-->"1.." Screening
+Screening "1..*"<-->"1" Movie
+Screening -->"1" Cinemahall
+Screening --> "1" Timeslot
+Movie -->"1" FSKRating
+Movie -->"1" Type
+Ticket --> "1" Screening
+Ticket --> "1" Seat
+OnlineBooking --> "1..*"Ticket
+OnlineBooking --> "1" Screening
+Theaterlayout -->"1..*" Seat
+Seat -->"1" Seatcategory
+Seat -->"1" Seatstatus
+
+OnlineBooking -->"1" BookingType
+OnlineBooking "0...*"<-->"1" Customer
+Customer <|-- Guest
+Customer <|-- Registered_User
+Movielist-->"1..*" Movie
+Cinema -->"1"Movielist
+Movie--> "1"Moviestatus
+User <|-- Customer
+User <|-- adminAccount
+Booking <|-- OnlineBooking
+Booking <|-- WalkInBooking
+WalkInBooking -->"1..*" Ticket
+WalkInBooking -->"1" Screening
+
+
+
+
+
+
+
+
+@enduml
