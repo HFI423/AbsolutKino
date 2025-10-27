@@ -1,5 +1,6 @@
 @startuml
 'https://plantuml.com/component-diagram
+skinparam linetype ortho
 
 title Frontend/Backend Architecture
 
@@ -31,8 +32,8 @@ package "Backend" {
     () ObjectRepository as ObjectRepo
     () EarningsRepository as EarningsRepo
 
-    ObjectService -up-> ObjectRepo : <<uses>>
-    EarningsService -up-> EarningsRepo : <<uses>>
+    ObjectService -u-> ObjectRepo : <<uses>>
+    EarningsService -u-> EarningsRepo : <<uses>>
     ObjectRepo -u- ObjectDB
     EarningsRepo -u- EarningsDB
 

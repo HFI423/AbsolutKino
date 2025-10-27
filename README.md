@@ -15,9 +15,10 @@
 
 # Questions for future lecture:
 - graphql instead of message queue
-- graphDatabase/PostgreSQL
+- graphDatabase/PostgresSQL
 - what diagrams to include: only diagrams for code generation?
 
 # Resources:
 
 - https://en.wikipedia.org/wiki/Use_case
+- [RabbitMQ URL](http://localhost:15672/#/)
