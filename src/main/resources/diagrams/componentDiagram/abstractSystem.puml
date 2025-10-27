@@ -1,0 +1,61 @@
+@startuml
+'https://plantuml.com/component-diagram
+
+title Frontend/Backend Architecture
+
+'=================== FRONTEND ===================
+package "Frontend" {
+    [Client\n(Web Browser)] as Client
+}
+
+'=================== BACKEND ===================
+package "Backend" {
+
+    [Main Server] as Server #Pink
+    [Object Service] as ObjectService
+    [Earnings Service] as EarningsService
+    [Message Broker] as Broker
+
+    () "Rest API" as API
+    API -u- Server
+
+    Server --> Broker
+    ObjectService --> Broker
+    EarningsService --> Broker
+
+    database "Database" {
+        [Object persistent Database] as ObjectDB
+        [Earnings statistics Database] as EarningsDB
+    }
+
+    () ObjectRepository as ObjectRepo
+    () EarningsRepository as EarningsRepo
+
+    ObjectService -up-> ObjectRepo : <<uses>>
+    EarningsService -up-> EarningsRepo : <<uses>>
+    ObjectRepo -u- ObjectDB
+    EarningsRepo -u- EarningsDB
+
+}
+
+'=================== CONNECTIONS ===================
+
+[Static File Server] as WebServer
+Client --> WebServer : <<downloads>> Angular Application
+Client --> API : <<uses>>
+
+'=================== Comments ===================
+
+note bottom of Broker: Main communication via subscribe/publish
+note as ServiceNote
+  Services to interact with the Databases serving as abstraction
+end note
+ServiceNote .. ObjectService
+ServiceNote .. EarningsService
+note as ObjectRepoNote
+  Services to interact with the Databases serving as abstraction
+end note
+ObjectRepoNote .. ObjectRepo
+ObjectRepoNote .. EarningsRepo
+
+@enduml
